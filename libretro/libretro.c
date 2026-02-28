@@ -2287,6 +2287,18 @@ static void check_variables(bool first_run)
       update_viewports = true;
   }
 
+  var.key = CORE_NAME "_h40_extra_columns_alpha";
+  environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var);
+  {
+    orig_value = config.h40_extra_columns_alpha;
+
+    if (!var.value) config.h40_extra_columns_alpha = 100;
+    else config.h40_extra_columns_alpha = atoi(var.value);
+
+    if (orig_value != config.h40_extra_columns_alpha)
+      update_viewports = true;
+  }
+  
   var.key = CORE_NAME "_vdp_fix_dma_boundary_bug";
   environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var);
   {
